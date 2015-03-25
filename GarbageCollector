@@ -4,19 +4,26 @@
 */
 
 class GarbageCollector {
+
 boost::hashMap<String,ptr> gcHash;
+
 /*the list of objects in scope, when scope changes we will update the hash map for all the
 keys that are in this vector*/
 boost::vector<String> inScopeObjs;
+
 public:
 //initialize the GC
 void GarbageCollector();
+
 //Called when a object is created vis new
 void insert(String,ptr);
+
 //update reference counts
 void updatehashMap();
+
 //update the scope vector
 void updateScope();
+
 private:
 void cleanUp();
 };
