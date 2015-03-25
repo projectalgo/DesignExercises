@@ -5,7 +5,7 @@
 
 class GarbageCollector {
 
-boost::hashMap<String,ptr> gcHash;
+boost::hashMap<String,int> gcHash;
 
 /*the list of objects in scope, when scope changes we will update the hash map for all the
 keys that are in this vector*/
@@ -15,15 +15,18 @@ public:
 //initialize the GC
 void GarbageCollector();
 
-//Called when a object is created vis new
-void insert(String,ptr);
+//Called when a object is created via new
+void insert(String,int);
 
 //update reference counts
+//Update the count of the keys from updateScope in the hash
+//Call clean up
 void updatehashMap();
 
 //update the scope vector
 void updateScope();
 
 private:
+//Delete ones with 0 reference count
 void cleanUp();
 };
